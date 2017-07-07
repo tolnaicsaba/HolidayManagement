@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolidayManagement", "HolidayManagement\HolidayManagement.csproj", "{3331E484-0BFC-493C-ACB3-52F111F9315E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolidayManagement.Repository", "HolidayManagement.Repository\HolidayManagement.Repository.csproj", "{31D18B14-6FC5-4095-97D2-6ED60A8B86D3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3331E484-0BFC-493C-ACB3-52F111F9315E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3331E484-0BFC-493C-ACB3-52F111F9315E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3331E484-0BFC-493C-ACB3-52F111F9315E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3331E484-0BFC-493C-ACB3-52F111F9315E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31D18B14-6FC5-4095-97D2-6ED60A8B86D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31D18B14-6FC5-4095-97D2-6ED60A8B86D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31D18B14-6FC5-4095-97D2-6ED60A8B86D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31D18B14-6FC5-4095-97D2-6ED60A8B86D3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
