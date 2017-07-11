@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+
+<ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
+    <li role="presentation"><a href="#mycalendar" aria-controls="mycalendar" role="tab" data-toggle="tab">My Calendar</a></li>
+    <li role="presentation"><a href="#groupmanagements" aria-controls="groupmanagements" role="tab" data-toggle="tab">Group Managements</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+</ul>
+<div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade active" id="users">@Html.Partial("_Users")</div>
+    <div role="tabpanel" class="tab-pane fade" id="mycalendar">@Html.Partial("_MyCalendar")</div>
+    <div role="tabpanel" class="tab-pane fade" id="groupmanagements">@Html.Partial("_GroupManagement")</div>
+    <div role="tabpanel" class="tab-pane fade" id="settings">@Html.Partial("_Settings")</div>
+</div>

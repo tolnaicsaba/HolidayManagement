@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using HolidayManagement.Models;
+using HolidayManagement.Repository;
+using HolidayManagement.Repository.Models;
 
 namespace HolidayManagement.Controllers
 {
@@ -155,15 +157,25 @@ namespace HolidayManagement.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    HolidayManagementContext db = new HolidayManagementContext();
+                    UserDetails NewUser = new UserDetails
+                    {
+                        UserID= user.Id,
+                        LastName = model.LastName,
+                        FirstName = model.FirstName
+                    };
+                    db.UserDetails.Add(NewUser);
+                    db.SaveChanges();
+            
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 AddErrors(result);
             }
@@ -426,6 +438,7 @@ namespace HolidayManagement.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        
 
         private IAuthenticationManager AuthenticationManager
         {
