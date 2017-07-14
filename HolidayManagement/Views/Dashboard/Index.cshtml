@@ -1,4 +1,4 @@
-﻿
+﻿@model HolidayManagement.Models.DashboardViewModel
 @{
     ViewBag.Title = "Dashboard";
 }
@@ -10,3 +10,10 @@
         @Html.Partial("_Menu")
     </div>
 </div>
+
+<script type="text/javascript" src="~/Scripts/Dashboard/DashboardModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Dashboard/TeamModel.js"></script>
+<script type="text/javascript" src="~/Scripts/Dashboard/UserModel.js"></script>
+<script type="text/javascript">
+    InitializeDashboardModel(@Html.Raw(Json.Encode(Model)));
+</script>

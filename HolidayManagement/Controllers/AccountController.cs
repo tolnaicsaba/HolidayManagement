@@ -183,7 +183,21 @@ namespace HolidayManagement.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+        //POST: /Account/CreateUser
+        public async Task<ActionResult> CreateUser(UserDetails model)
+        {
+            var user = new ApplicationUser { UserName = model.AspNetUser.Email, Email = model.AspNetUser.Email };
+            var result = await UserManager.CreateAsync(user, "Password1!");
+            if (result.Succeeded)
+            {
+                HolidayManagementContext newdb = new HolidayManagementContext();
+                    newdb.UserDetails.Add(model);
+                    newdb.SaveChanges();
 
+            }
+
+            return RedirectToAction("Dashboard","Index");
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
@@ -493,6 +507,7 @@ namespace HolidayManagement.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
-    }
+
+    #endregion
+}
 }
