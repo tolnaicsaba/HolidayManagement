@@ -5,60 +5,9 @@
 <h1><strong>Users</strong></h1>
 
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Create new user</button>
+@Html.Partial("_CreateUser")
 
-<!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create new user</h4>
-            </div>
-            <div class="modal-body">
-                <form data-bind="with: manageUser">
-                    <div class="form-group">
-                        <label for="email" class="form-control-label">Email:</label>
-                        <input type="email" class="form-control" data-bind="value:email">
-                    </div>
-                    <div class="form-group">
-                        <label for="firstname" class="form-control-label">First Name:</label>
-                        <input type="text" class="form-control" data-bind="value:firstname">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastname" class="form-control-label">Last Name:</label>
-                        <input type="text" class="form-control" data-bind="value:lastname">
-                    </div>
-                    <div class="form-group">
-                        <label for="hiredate" class="form-control-label">Hire Date:</label>
-                        <input type="text" class="form-control" data-bind="value:hiredate">
-                    </div>
-                    <div class="form-group">
-                        <label for="maxdays" class="form-control-label">Maximum count of available days:</label>
-                        <input type="number" class="form-control" data-bind="value:maxdays">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Team:</label>
-                        <select data-bind="options : $root.teams,
-                                   optionsText : 'Name',
-                                   optionsValue : 'Id',
-                                   value : team.Id,
-                                   optionsCaption : 'Choose...'
-                                   "></select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-dismiss="modal" data-bind="$root.createUser">Create new User</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-<br /><br />
+<br />
     <table class="table">
         <tr>
             <th>Email</th>
@@ -74,6 +23,7 @@
                 <td data-bind="text:lastname"> </td>
                 <td data-bind="text:hiredate"> </td>
                 <td data-bind="text:maxdays"> </td>
+                <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Edit</button></td>
             </tr>
         </tbody>
         </table>

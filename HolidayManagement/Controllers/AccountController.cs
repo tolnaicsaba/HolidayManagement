@@ -158,7 +158,7 @@ namespace HolidayManagement.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
+                    await UserManager.AddToRoleAsync(user.Id, "Employee");
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -183,22 +183,53 @@ namespace HolidayManagement.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-        //POST: /Account/CreateUser
+        //POST: /Account/CreateUser/
+
+        [HttpPost]
+
         public async Task<ActionResult> CreateUser(UserDetails model)
         {
             var user = new ApplicationUser { UserName = model.AspNetUser.Email, Email = model.AspNetUser.Email };
             var result = await UserManager.CreateAsync(user, "Password1!");
+            HolidayManagementContext newdb = new HolidayManagementContext();
             if (result.Succeeded)
-            {
-                HolidayManagementContext newdb = new HolidayManagementContext();
+            {          
+                    model.AspNetUser = null;
+                    model.UserID = user.Id;     
                     newdb.UserDetails.Add(model);
                     newdb.SaveChanges();
+                
 
             }
-
-            return RedirectToAction("Dashboard","Index");
+      
+           return Json(new { successed = true, messages = "szia" , newUser=model}, JsonRequestBehavior.DenyGet);
         }
-        //
+
+        [HttpPost]
+        public async Task<ActionResult> EditUser(UserDetails model)
+        {
+            HolidayManagementContext newdb = new HolidayManagementContext();
+            var user = newdb.UserDetails.FirstOrDefault(x => x.ID == model.ID);
+           Boolean szukcsesz = false;
+            if (user != null)
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                user.HireDate = model.HireDate;
+                user.MaxDays = model.MaxDays;
+                user.AspNetUser.Email = model.AspNetUser.Email;
+                user.AspNetUser.UserName = model.AspNetUser.UserName;
+                newdb.SaveChanges();
+                szukcsesz = true;
+
+            }
+            else
+            {
+
+            }
+            return Json(new { successed = true, messages = "szia", newUser = model }, JsonRequestBehavior.DenyGet);
+        }
+
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
