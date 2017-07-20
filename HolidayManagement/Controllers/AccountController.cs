@@ -202,7 +202,7 @@ namespace HolidayManagement.Controllers
 
             }
       
-           return Json(new { successed = true, messages = "szia" , newUser=model}, JsonRequestBehavior.DenyGet);
+           return Json(new { successed = true, newUser=model}, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
@@ -210,7 +210,6 @@ namespace HolidayManagement.Controllers
         {
             HolidayManagementContext newdb = new HolidayManagementContext();
             var user = newdb.UserDetails.FirstOrDefault(x => x.ID == model.ID);
-           Boolean szukcsesz = false;
             if (user != null)
             {
                 user.FirstName = model.FirstName;
@@ -220,15 +219,18 @@ namespace HolidayManagement.Controllers
                 user.AspNetUser.Email = model.AspNetUser.Email;
                 user.AspNetUser.UserName = model.AspNetUser.UserName;
                 newdb.SaveChanges();
-                szukcsesz = true;
 
             }
-            else
-            {
-
-            }
-            return Json(new { successed = true, messages = "szia", newUser = model }, JsonRequestBehavior.DenyGet);
+           
+            return Json(new { successed = true,newUser = model }, JsonRequestBehavior.DenyGet);
         }
+
+
+        //[HttpPost]
+        //public async Task<ActionResult> AddHoliday(UserDetails model)
+        //{
+        //    HolidayManagementContext newdb = new HolidayManagementContext();
+        //}
 
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

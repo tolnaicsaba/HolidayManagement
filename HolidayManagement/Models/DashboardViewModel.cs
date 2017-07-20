@@ -13,5 +13,6 @@ namespace HolidayManagement.Models
         public List<UserDetails> UserList { get; set; }
         public List<Team> TeamList { get; set; }
         public List<IdentityRole> Roles { get; set; }
+        public CalendarViewModel Calendar { get; set; }
     }
 }
