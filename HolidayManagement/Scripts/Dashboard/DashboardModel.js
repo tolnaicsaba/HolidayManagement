@@ -186,20 +186,21 @@
             url: "/Account/EditUser",
             type: "POST",
             data: {
-                firstName: _self.manageUser.firstname(),
-                lastName: _self.manageUser.lastname(),
-                hireDate: _self.manageUser.hiredate(),
-                maxDays: _self.manageUser.maxdays(),
+                firstname: _self.manageUser.firstname(),
+                lastname: _self.manageUser.lastname(),
+                hiredate: _self.manageUser.hiredate(),
+                maxdays: _self.manageUser.maxdays(),
                 teamID: _self.manageUser.team.Id(),
                 rolesid: _self.manageUser.roles.Id(),
-                ID:_self.manageUser.id(),
+                id:_self.manageUser.id(),
                 AspNetUser: {
                     Email: _self.manageUser.email
                 }
             },
             dataType: "Json",
             success: function (data) {
-                    alert("User successfully edited!")
+                alert("User successfully edited!")
+                $("#myModal").modal('hide');
             }
         });
     }

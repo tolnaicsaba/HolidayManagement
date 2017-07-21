@@ -11,7 +11,7 @@ namespace HolidayManagement.Models
         public List<BankHoliday> BankHolidays { get; set; }
         public List<Vacation> Vacations { get; set; }
         public List<MonthDayViewModel> MonthDays { get; set; }   
-        
+        public string Month { get; set; }
         public CalendarViewModel()
         {
             MonthDays = new List<MonthDayViewModel>();

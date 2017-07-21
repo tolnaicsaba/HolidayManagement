@@ -22,10 +22,12 @@ namespace HolidayManagement.Repository.Models
         public int? MaxDays { get; set; }
 
         public int? TeamId { get; set; }
+        public int? RolesId { get; set; }
 
         [ForeignKey("TeamId")]
         public virtual Team Team { get; set; }
         [ForeignKey("UserID")]
         public virtual IdentityUser AspNetUser { get; set; }
+        
     }
 }

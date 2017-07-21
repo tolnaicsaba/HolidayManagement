@@ -213,9 +213,9 @@ namespace HolidayManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditUser(UserDetails model)
+        public ActionResult EditUser(UserDetails model)
         {
-            
+            bool successed;
             HolidayManagementContext newdb = new HolidayManagementContext();
             var user = newdb.UserDetails.FirstOrDefault(x => x.AspNetUser.Email == model.AspNetUser.Email);
             if (user != null)
@@ -225,12 +225,17 @@ namespace HolidayManagement.Controllers
                 user.HireDate = model.HireDate;
                 user.MaxDays = model.MaxDays;
                 user.AspNetUser.Email = model.AspNetUser.Email;
-                user.AspNetUser.UserName = model.AspNetUser.UserName;
+                user.TeamId = model.TeamId;
                 newdb.SaveChanges();
+                successed = true;
 
             }
+            else
+            {
+                successed = false;
+            }
            
-            return Json(new { successed = true,newUser = model }, JsonRequestBehavior.DenyGet);
+            return Json(new { successed = successed,newUser = model }, JsonRequestBehavior.DenyGet);
         }
 
         [AllowAnonymous]
