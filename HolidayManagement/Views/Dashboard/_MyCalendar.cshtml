@@ -3,26 +3,16 @@
     <button type="button" class="btn btn-info btn-md">Previous Month</button>
     @Html.Partial("_AddHoliday")
     <button type="button" class="btn btn-info btn-md pull-right">Next Month</button>
-    <table class="table">
+    <table class="table table-hover">
             <tbody data-bind="foreach: calendar">
                 <tr>
                     <td>
                         <div class="day">
                             <span data-bind="text: day"></span>
-                            <span data-bind="text: month"></span>
+                            <span data-bind="text: name"></span>
                         </div>
                     </td>
                 </tr>
             </tbody>
     </table>
-    <div class="col-sm-3 col-md-3 pull-right">
-        <form class="navbar-form" role="search">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term" />
-                <div class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i> </button>
-                </div>
-            </div>
-        </form>
-        </div>
     </div>

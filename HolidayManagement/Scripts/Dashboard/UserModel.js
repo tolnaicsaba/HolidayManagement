@@ -18,7 +18,7 @@
             this.hiredate(data.HireDate);
             this.maxdays(data.MaxDays);
             this.team = new TeamModel(data.Team);
-            this.roles = new RoleModel(data.role);
+            this.roles = new RoleModel(data.Role);
 
     }
 }

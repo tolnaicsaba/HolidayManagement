@@ -3,6 +3,7 @@ using HolidayManagement.Repository;
 using HolidayManagement.Repository.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -56,6 +57,9 @@ namespace HolidayManagement.Controllers
                 var vakacio = Calendar.BankHolidays.FirstOrDefault(x => x.Day == i && x.Month == DateTime.Now.Month);
                 day.IsFreeDay = date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday || vakacio != null;
                 day.Vacations = free.Where(x => DateTime.Compare(x.StartDate, date) <= 0 || DateTime.Compare(x.EndDate, date) >= 0).ToList();
+
+
+
                 Calendar.MonthDays.Add(day);
             };
             dash.Calendar = Calendar;
