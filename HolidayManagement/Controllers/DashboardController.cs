@@ -41,7 +41,7 @@ namespace HolidayManagement.Controllers
             VacationRepository vakrep = new VacationRepository();
             var datum = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             var free = vakrep.GetVacations();
-            for (int i = 1; i < datum; ++i)
+            for (int i = 1; i <= datum; ++i)
             {
                 var date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, i);
 

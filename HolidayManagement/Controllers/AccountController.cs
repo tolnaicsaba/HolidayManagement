@@ -189,6 +189,8 @@ namespace HolidayManagement.Controllers
 
         public async Task<ActionResult> CreateUser(UserDetails model)
         {
+            bool successed;
+            string message = "";
             var user = new ApplicationUser { UserName = model.AspNetUser.Email, Email = model.AspNetUser.Email };
             var result = await UserManager.CreateAsync(user, "Password1!");
             HolidayManagementContext newdb = new HolidayManagementContext();
@@ -198,18 +200,24 @@ namespace HolidayManagement.Controllers
                     model.UserID = user.Id;     
                     newdb.UserDetails.Add(model);
                     newdb.SaveChanges();
-                
+                successed = true;
 
             }
+            else
+            {
+                message = "Email is used";
+                successed = false;
+            }
       
-           return Json(new { successed = true, newUser=model}, JsonRequestBehavior.DenyGet);
+           return Json(new { successed = successed, Message=message, newUser=model}, JsonRequestBehavior.DenyGet);
         }
 
         [HttpPost]
         public async Task<ActionResult> EditUser(UserDetails model)
         {
+            
             HolidayManagementContext newdb = new HolidayManagementContext();
-            var user = newdb.UserDetails.FirstOrDefault(x => x.ID == model.ID);
+            var user = newdb.UserDetails.FirstOrDefault(x => x.AspNetUser.Email == model.AspNetUser.Email);
             if (user != null)
             {
                 user.FirstName = model.FirstName;
@@ -225,12 +233,25 @@ namespace HolidayManagement.Controllers
             return Json(new { successed = true,newUser = model }, JsonRequestBehavior.DenyGet);
         }
 
+        [AllowAnonymous]
+        public ActionResult previousmonth()
+        {
 
-        //[HttpPost]
-        //public async Task<ActionResult> AddHoliday(UserDetails model)
-        //{
-        //    HolidayManagementContext newdb = new HolidayManagementContext();
-        //}
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> AddHoliday(Vacation model)
+        {
+            HolidayManagementContext newdb = new HolidayManagementContext();
+            var user = newdb.Vacations;
+            if (user!=null)
+            {
+
+            }
+
+            return Json(new { successed = true, newUser = model }, JsonRequestBehavior.DenyGet);
+
+        }
 
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

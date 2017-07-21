@@ -3,7 +3,6 @@
     _self.users = ko.observableArray(null);
     _self.teams = ko.observableArray(null);
     _self.roles = ko.observableArray(null);
-    _self.errorMessage = ko.observableArray();
     _self.banks=ko.observableArray(null);
     _self.Vacations = ko.observableArray(null);
     _self.calendar = ko.observable();
@@ -64,7 +63,12 @@
             },
             dataType:"Json",
             success: function (data) {
-                alert("User succesfully created!")
+                if (data.successed == false) {
+                    $("#error").html(data.Message);
+                }
+                else {
+                    alert("User succesfully created!");
+                }
             }
            
         });
