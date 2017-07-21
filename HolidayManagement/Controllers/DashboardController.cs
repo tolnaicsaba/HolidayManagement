@@ -38,9 +38,6 @@ namespace HolidayManagement.Controllers
                 BankHolidays = bank.GetBankHolidays(),
                 Vacations = vakacio.GetVacations()
             };
-            DateTimeFormatInfo igen = new DateTimeFormatInfo();
-            Calendar.Month = igen.GetMonthName(DateTime.Now.Month);
-            Calendar.MonthDays = GetMonthDays(DateTime.Now.Year, DateTime.Now.Month);
             VacationRepository vakrep = new VacationRepository();
             var datum = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             var free = vakrep.GetVacations();
